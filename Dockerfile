@@ -5,6 +5,7 @@ RUN apt-get update && \
         curl \
         python3 \
         python3-pip \
+        gcc \
         sudo \
         vim && \
     apt-get clean && \
