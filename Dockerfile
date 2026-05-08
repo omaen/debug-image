@@ -5,12 +5,16 @@ RUN apt-get update && \
         curl \
         python3 \
         python3-pip \
+        sudo \
         vim && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN useradd --create-home --shell /bin/bash debuguser
+RUN useradd --create-home --shell /bin/bash debugroot && \
+    useradd --create-home --shell /bin/bash debuguser && \
+    echo "debugroot ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/debugroot && \
+    chmod 0440 /etc/sudoers.d/debugroot
 
-USER debuguser
+USER debugroot
 
-WORKDIR /home/debuguser
+WORKDIR /home/debugroot

@@ -24,7 +24,18 @@ docker buildx build \
   .
 ```
 
+## Runtime users
+
+Containers start as `debugroot` by default. This user has passwordless `sudo`.
+
+Switch to the unprivileged `debuguser` account:
+
+```bash
+sudo -u debuguser -i
+```
+
 ## GitHub Actions
 
 The workflow at `.github/workflows/build-push.yml` now builds and pushes both
 `linux/amd64` and `linux/arm64` images to GHCR.
+
